@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>p5.play : Demos</title>
+	<link rel="icon" href="../favicon.png" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="index.css" />
+</head>
+
+<body>
+	<div id="container">
+		<div id="myP5"></div>
+
+		<div class="dropdown">
+			<button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-bs-toggle="dropdown"
+				aria-expanded="false">
+				Demos <span class="caret"></span>
+			</button>
+			<ul id="examples" class="dropdown-menu" role="menu" aria-labelledby="menu1"></ul>
+		</div>
+
+		<a class="btn" href="#" onclick="run()">&#9658; Play</a>
+		<a class="btn" href="#" onclick="undoAllChanges()">&#8634; Undo All Changes</a>
+
+
+		<pre id="editor">
+    //create a variable for the sprite and the animation
+let star, starAni;
+
+//it is smart to preload images so there is no delay.
+function preload() {
+  // create an animation from a sequence of numbered images
+  //if you are using the p5 web editor you have to loadAnimation like this:
+  starAni = loadAnimation(
+                    'assets/pixil-frame-0.png',
+                     'assets/pixil-frame-1.png',
+                     'assets/pixil-frame-2.png',
+                     'assets/pixil-frame-3.png',
+                     'assets/pixil-frame-4.png',
+                     'assets/pixil-frame-5.png',
+                     'assets/pixil-frame-6.png',
+                     'assets/pixil-frame-7.png');
+
+  //if you are using replit, you can load an animation like this:
+  //starAni = loadAnimation('./assets/pixil-frame-1.png', 8);
+}
+
+function setup() {
+  createCanvas(200, 200);
+  //create a new sprite, add the star animation
+  star = createSprite(starAni);
+
+  //defines how many p5 frames before the next animation image.
+  //star.animation.frameDelay = 10;
+
+  //stop the animation
+  // star.animation.stop();
+}
+
+function draw() {
+ clear();
+  // if the user presses p, start the animation
+  // if the user presses s, stop the animation.
+	if (kb.presses('p')) {
+		star.animation.play();
+	} else if (kb.presses('s')) {
+		star.animation.stop();
+	}
+
+  //magic sauce! this will replace the animation with the rect or circle representing the sprite.
+  star.debug = mouse.holding();
+}
+
+
+
+    </pre>
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/p5.js"></script>
+	<script src="../v3/planck.min.js"></script>
+	<script src="../v3/p5.play.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.8.1/ace.min.js"></script>
+	<script src="index.js"></script>
+</body>
+
+</html>
