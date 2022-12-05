@@ -8,10 +8,14 @@ html, body {
   margin: 10px auto;
   color: #4E4B5C;
 }
+
 canvas {
   display: block;
   background-color: white;
   margin: 20px auto;
+}
+h2 {
+  margin-bottom: 0px;
 }
 
 a{
